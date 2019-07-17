@@ -8,6 +8,7 @@ function Weather(cityName, description) {
 
 Object.defineProperty(Weather.prototype, 'temperature', {
     get: function() {
+
         return this._temperature;
     },
     set: function(value) {
