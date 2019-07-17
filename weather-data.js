@@ -1,17 +1,27 @@
-"use strict";
+class Weather {
 
-function Weather(cityName, description) {
-    this.cityName = cityName;
-    this.description = description;
-    this._temperature = '';
-}
+    constructor(cityName, description, country) {
+        this.cityName = cityName;
+        this.description = description;
+        this.country = country;
+        this._temperature = '';
+        this._clouds = '';
+    }
 
-Object.defineProperty(Weather.prototype, 'temperature', {
-    get: function() {
 
+    get temperature() {
         return this._temperature;
-    },
-    set: function(value) {
+    }
+
+    set temperature(value) {
         this._temperature = (value * 1.8 + 32).toFixed(2) + 'F.';
     }
-});
+
+    get clouds() {
+        return this._clouds;
+    }
+
+    set clouds(value) {
+        this._clouds = `To many ${value} !!!`;
+    }
+}

@@ -1,11 +1,16 @@
-"use strict";
+'use strict';
 
-var searchButton = document.querySelector('button');
-var searchCity = document.querySelector('#city');
+let searchButton = document.querySelector('button');
+let searchCity = document.querySelector('#city');
 
-var loadingText = document.querySelector('#load');
-var weatherBox = document.querySelector('#weather');
+let loadingText = document.querySelector('#load');
+let weatherBox = document.querySelector('#weather');
 
-var weatherCity = weatherBox.firstElementChild;
-var weatherDescription = document.querySelector('#weatherDescription');
-var weatherTemperature = weatherBox.lastElementChild;
+let weatherCity = document.querySelector('#weatherCity');
+let weatherDescription = document.querySelector('#weatherDescription');
+let weatherCountry = document.querySelector('#weatherCountry');
+let weatherTemperature = document.getElementById('#weatherTemperature');
+let weatherClouds = document.querySelector('#weatherClouds');
+
+
+

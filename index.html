@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -12,20 +12,27 @@
 <div class="main">
     <div id="search">
         <label for="city">City Name</label>
-        <input type="text" id="city">
+        <input id="city" type="text">
         <button type="button">Show Weather!</button>
     </div>
     <div id="load">Loading...</div>
     <div id="weather">
+
         <h1 id="weatherCity">City Name</h1>
 
         <div id="weatherDescription">Weather Description</div>
+        <div id="weatherCountry">Country</div>
+        <br>
+        <div id="weatherClouds">Clouds</div>
         <div id="weatherTemperature">Temperature</div>
+
 
     </div>
 </div>
 <script src="init.js"></script>
 <script src="weather-data.js"></script>
+<script src="config.js"></script>
 <script src="app.js"></script>
+
 </body>
 </html>

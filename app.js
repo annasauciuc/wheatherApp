@@ -1,37 +1,42 @@
-"use strict";
+'use strict';
 
 searchButton.addEventListener('click', searchWeather);
 
 function searchWeather() {
     loadingText.style.display = 'block';
     weatherBox.style.display = 'none';
-    var cityName = searchCity.value;
-    if (cityName.trim().length == 0) {
+    let cityName = searchCity.value;
+    if (cityName.trim().length === 0) {
         return alert('Please enter a City Name');
     }
-    var http = new XMLHttpRequest();
-    var apiKey = '79a883ecca5f31a8dd97e68dcff4b759';
-    var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&appid=' + apiKey;
-    var method = 'GET';
 
-    http.open(method, url);
-    http.onreadystatechange = function() {
-        if (http.readyState == XMLHttpRequest.DONE && http.status === 200) {
-            var data = JSON.parse(http.responseText);
-            var weatherData = new Weather(cityName, data.weather[0].description.toUpperCase());
+    let apiKey = config.API_KEY;
+    let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&units=metric&appid=' + apiKey;
+
+
+    fetch(url, {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .then((data) => {
+            let country = data.sys.country;
+            let description = data.weather[0].description.toUpperCase();
+            let weatherData = new Weather(cityName, description, country);
             weatherData.temperature = data.main.temp;
+            weatherData.clouds = data.weather[0].main;
             updateWeather(weatherData);
-        } else if (http.readyState === XMLHttpRequest.DONE) {
-            alert('Something went wrong!');
-        }
-    };
-    http.send();
+        })
+        .catch(error => console.error('Error:', error));
+
+
 }
 
 function updateWeather(weatherData) {
     weatherCity.textContent = weatherData.cityName;
     weatherDescription.textContent = weatherData.description;
+    weatherCountry.textContent = weatherData.country;
     weatherTemperature.textContent = weatherData.temperature;
+    weatherClouds.textContent = weatherData.clouds;
 
     loadingText.style.display = 'none';
     weatherBox.style.display = 'block';
